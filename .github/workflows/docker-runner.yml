@@ -54,13 +54,18 @@ jobs:
         path: artifacts
     - name: See directory
       run: |
-        ls -la artifacts/bin/linux
+        ls -la artifacts/bin/linux/x64_Release_openssl3
     - name: Find Package
       run: |
-        sudo find -name "*.deb"
-    - name: Extract Package
+        find -name "*.deb"
+    - name: Extract binaries # they are tar'd to preserve permissions and symlinks.
       run: |
-        tar -xvf artifacts/${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
+        cd artifacts/bin/linux
+        find -name "*.tar" -exec tar -xvf '{}' \;
+    - name: See directory
+      run: |
+        ls -la artifacts/bin/linux/x64_Release_openssl3
+        ls -la artifacts/bin/linux
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Build the Docker Image and Run
