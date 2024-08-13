@@ -52,13 +52,7 @@ jobs:
       with:
         name: Package-${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
         path: artifacts
-    - name: See directory
-      run: |
-        ls -la artifacts
-    - name: Find Package
-      run: |
-        find -name "*.deb"
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
-    - name: Build the Docker Image and Run
-      run: docker run $(docker build -q .)
+    - name: Docker Run
+      run: docker run -v $(pwd):/main $ {{ matrix.vec.image }} /main/docker-script.sh
