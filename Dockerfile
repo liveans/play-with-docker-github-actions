@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 
-RUN apt-get install -y wget git libicu-dev
+RUN apt-get install -y wget git libicu-dev libnuma1
 
 RUN wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && \
     chmod +x dotnet-install.sh && \
@@ -21,7 +21,7 @@ RUN git clone --depth 1 https://github.com/liveans/QuicSimpleTest.git && \
 
 WORKDIR /QuicSimpleTest
 
-ADD ../msquic/artifacts/dist/libmsquic_*.deb /
+COPY msquic/artifacts/dist/libmsquic_*.deb /
 
 RUN dpkg -i /libmsquic_*.deb
 

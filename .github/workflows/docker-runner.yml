@@ -14,8 +14,7 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-      with:
-        path: main
+
     - name: Checkout msquic
       uses: actions/checkout@v4
       with:
@@ -40,4 +39,4 @@ jobs:
       run: |
         pushd msquic && scripts/package-distribution.ps1 && popd
     - name: Build the Docker Image and Run
-      run: pushd main && docker run $(docker build -q .) && popd
+      run: docker run $(docker build -q .)
