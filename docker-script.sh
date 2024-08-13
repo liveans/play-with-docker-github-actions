@@ -3,7 +3,7 @@
 sudo apt-get update
 sudo apt-get install -y wget git libicu-dev
 
-sudo apt-get install -y /artifacts/libmsquic_*.deb
+sudo apt-get install -y ./artifacts/libmsquic_*.deb
 
 sudo wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 sudo chmod +x dotnet-install.sh
