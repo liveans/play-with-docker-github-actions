@@ -54,7 +54,10 @@ jobs:
         path: artifacts
     - name: See directory
       run: |
-        ls -la artifacts
+        ls -la artifacts/bin/linux
+    - name: Find Package
+      run: |
+        sudo find -name "*.deb"
     - name: Extract Package
       run: |
         tar -xvf artifacts/${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
