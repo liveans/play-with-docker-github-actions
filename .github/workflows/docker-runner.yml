@@ -54,7 +54,10 @@ jobs:
         path: artifacts
     - name: See directory
       run: |
-        ls -la .
+        ls -la artifacts
+    - name: Extract Package
+      run: |
+        tar -xvf artifacts/${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Build the Docker Image and Run
