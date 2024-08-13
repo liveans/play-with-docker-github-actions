@@ -55,8 +55,6 @@ on:
         default: ''
         type: string
 
-permissions: read-all
-
 jobs:
   build-unix-reuse:
     needs: []
