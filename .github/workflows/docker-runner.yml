@@ -10,9 +10,34 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        path: main
+    - name: Checkout msquic
+      uses: actions/checkout@v4
+      with:
+        repository: microsoft/msquic
+        ref: main
+        path: msquic
+    - name: Set ownership
+      run: |
+          # this is to fix GIT not liking owner of the checkout dir
+          pushd msquic && chown -R $(id -u):$(id -g) $PWD && popd
+    - name: Prepare Machine
+      shell: pwsh
+      run: |
+        scripts/prepare-machine.ps1
+    - name: Build Artifacts
+      shell: pwsh
+      run: |
+        # Build the artifacts for x64 as test for now. We will add more archs later.
+        pushd msquic && scripts/build.ps1 -Config Release -UseSystemOpenSSLCrypto -Arch x64 && popd
+    - name: Package Artifacts
+      shell: pwsh
+      run: |
+        pushd msquic && scripts/package-distribution.ps1 && popd
+    - name: Build the Docker Image and Run
+      run: pushd main && docker run $(docker build -q .) && popd
