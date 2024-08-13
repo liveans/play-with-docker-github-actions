@@ -21,7 +21,7 @@ RUN git clone --depth 1 https://github.com/liveans/QuicSimpleTest.git && \
 
 WORKDIR /QuicSimpleTest
 
-COPY msquic/artifacts/dist/libmsquic_*.deb /
+COPY artifacts/libmsquic_*.deb /
 
 RUN dpkg -i /libmsquic_*.deb
 
