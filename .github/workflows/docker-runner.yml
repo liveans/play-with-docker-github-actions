@@ -55,4 +55,4 @@ jobs:
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Build the Docker Image and Run
-      run: pushd main && docker run $(docker build -q .) && popd
+      run: docker run $(docker build -q .)
