@@ -50,22 +50,14 @@ jobs:
     - name: Download Package
       uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
       with:
-        name: ${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
+        name: Package-${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
         path: artifacts
     - name: See directory
       run: |
-        ls -la artifacts/bin/linux/x64_Release_openssl3
+        ls -la artifacts
     - name: Find Package
       run: |
         find -name "*.deb"
-    - name: Extract binaries # they are tar'd to preserve permissions and symlinks.
-      run: |
-        cd artifacts/bin/linux
-        find -name "*.tar" -exec tar -xvf '{}' \;
-    - name: See directory
-      run: |
-        ls -la artifacts/bin/linux/x64_Release_openssl3
-        ls -la artifacts/bin/linux
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Build the Docker Image and Run
