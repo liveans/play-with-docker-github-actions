@@ -52,7 +52,12 @@ jobs:
       with:
         name: Package-${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
         path: artifacts
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16
+      with:
+        name: ${{ matrix.vec.config }}-linux-${{ matrix.vec.os }}-${{ matrix.vec.arch }}-${{ matrix.vec.tls }}-UseSystemOpenSSLCrypto${{ matrix.vec.xdp }}
+        path: artifacts
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Docker Run
-      run: docker run -v $(pwd):/main ${{ matrix.vec.image }} /main/docker-script.sh
+      run: docker run -v $(pwd):/main ${{ matrix.vec.image }} /main/docker-script.sh ${{ matrix.vec.arch }}_${{ matrix.vec.config }}_${{ matrix.vec.tls }}

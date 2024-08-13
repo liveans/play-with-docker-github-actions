@@ -12,6 +12,11 @@ sudo ./dotnet-install.sh --channel 9.0
 export DOTNET_ROOT=/root/.dotnet
 export PATH=$PATH:/root/.dotnet
 
+cd artifacts/bin/linux/$1
+sudo chmod +x msquictest
+sudo ./msquictest --gtest_filter=ParameterValidation.ValidateApi
+cd ../../../..
+
 sudo git clone --depth 1 https://github.com/liveans/QuicSimpleTest.git
 cd QuicSimpleTest
 sudo dotnet build -c Release
