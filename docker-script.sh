@@ -13,13 +13,13 @@ cd ../../../..
 
 sudo wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 sudo chmod +x dotnet-install.sh
-sudo ./dotnet-install.sh --channel 9.0
+sudo ./dotnet-install.sh --channel 8.0
 
 export DOTNET_ROOT=/root/.dotnet
 export PATH=$PATH:/root/.dotnet
 
 cd QuicSimpleTest
-sudo dotnet ./bin/$2/net8.0/linux-${1}/QuicHello.dll
+sudo dotnet ./artifacts/QuicHello.dll
 
 # sudo git clone --depth 1 https://github.com/liveans/QuicSimpleTest.git
 # cd QuicSimpleTest
