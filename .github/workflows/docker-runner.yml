@@ -74,6 +74,6 @@ jobs:
         export PATH=$PATH:~/.dotnet
     - name: Build .NET QUIC Test Project
       run: |
-        dotnet build -a ${{ matrix.vec.arch }} -c ${{ matrix.vec.config }}
+        pushd QuicSimpleTest && dotnet build -a ${{ matrix.vec.arch }} -c ${{ matrix.vec.config }} && popd
     - name: Docker Run
       run: docker run -v $(pwd):/main ${{ matrix.vec.image }} /main/docker-script.sh ${{ matrix.vec.arch }} ${{ matrix.vec.config }} ${{ matrix.vec.tls }}
