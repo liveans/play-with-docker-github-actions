@@ -19,7 +19,7 @@ export DOTNET_ROOT=/root/.dotnet
 export PATH=$PATH:/root/.dotnet
 
 cd QuicSimpleTest
-sudo dotnet ./bin/$2/net9.0/linux-${1}/QuicHello.dll
+sudo dotnet ./bin/$2/net8.0/linux-${1}/QuicHello.dll
 
 # sudo git clone --depth 1 https://github.com/liveans/QuicSimpleTest.git
 # cd QuicSimpleTest
