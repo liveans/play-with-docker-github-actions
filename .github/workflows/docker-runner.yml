@@ -59,5 +59,21 @@ jobs:
         path: artifacts
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
+    - name: Checkout .NET QUIC Project
+      uses: actions/checkout@v4
+      with:
+        repository: liveans/QuicSimpleTest
+        ref: main
+        path: QuicSimpleTest
+    - name: Install .NET latest
+      run: |
+        wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+        chmod +x dotnet-install.sh
+        ./dotnet-install.sh --channel 9.0
+        export DOTNET_ROOT=~/.dotnet
+        export PATH=$PATH:~/.dotnet
+    - name: Build .NET QUIC Test Project
+      run: |
+        dotnet build -a ${{ matrix.vec.arch }} -c ${{ matrix.vec.config }}
     - name: Docker Run
-      run: docker run -v $(pwd):/main ${{ matrix.vec.image }} /main/docker-script.sh ${{ matrix.vec.arch }}_${{ matrix.vec.config }}_${{ matrix.vec.tls }}
+      run: docker run -v $(pwd):/main ${{ matrix.vec.image }} /main/docker-script.sh ${{ matrix.vec.arch }} ${{ matrix.vec.config }} ${{ matrix.vec.tls }}
