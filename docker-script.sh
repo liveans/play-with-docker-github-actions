@@ -8,6 +8,7 @@ echo "${OS} ${VERSION} is detected."
 install_dependencies_apt()
 {
     sudo apt-get update
+    sudo apt-get install --fix-broken
     sudo apt-get install -y wget git gzip tar
     # Remove the existing libmsquic package and dependencies for Ubuntu
     sudo apt-get remove -y libmsquic libnuma1
