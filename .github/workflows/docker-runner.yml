@@ -60,10 +60,10 @@ jobs:
           # { config: "Release", os: "ubuntu-24.04", arch: "arm64", tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-helix-arm64v8" },
           # { config: "Release", os: "ubuntu-24.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-helix-amd64", xdp: "-UseXdp" },
           # Centos Stream 9
-          { config: "Release", os: "ubuntu-24.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:centos-stream9-helix" },
+          { config: "Release", os: "ubuntu-22.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:centos-stream9-helix" },
           # Fedora 39 - 40
-          { config: "Release", os: "ubuntu-24.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-39" },
-          { config: "Release", os: "ubuntu-24.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-40" },
+          { config: "Release", os: "ubuntu-22.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-39" },
+          { config: "Release", os: "ubuntu-22.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-40" },
           # OpenSuse 15.4
           { config: "Release", os: "ubuntu-20.04", arch: "x64",   tls: "openssl", image: "mcr.microsoft.com/dotnet-buildtools/prereqs:opensuse-15.4-helix-amd64" },
           # RHEL 8 - 9
