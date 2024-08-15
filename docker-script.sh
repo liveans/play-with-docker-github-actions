@@ -11,7 +11,7 @@ install_dependencies_apt()
     sudo apt-get install -y wget git gzip tar
     # Remove the existing libmsquic package and dependencies for Ubuntu
     sudo apt-get remove -y libmsquic libnuma1
-    if [ "$OS" -eq "ubuntu" ] && [ "$VERSION" -eq "24.04" ]; then
+    if [[ "$OS" == "ubuntu" ]] && [[ "$VERSION" == "24.04" ]]; then
         sudo apt-get remove -y libxdp1 libnl-route-3-200
     fi
     sudo apt-get install -y ./artifacts/libmsquic_*.deb
