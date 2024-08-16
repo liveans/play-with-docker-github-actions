@@ -58,9 +58,9 @@ cd /main
 
 sudo wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 sudo chmod +x dotnet-install.sh
-sudo ./dotnet-install.sh --channel 8.0
+sudo ./dotnet-install.sh --channel $4
 
 export DOTNET_ROOT=/root/.dotnet
 export PATH=$PATH:/root/.dotnet
 
-sudo /root/.dotnet/dotnet QuicSimpleTest/artifacts/QuicHello.dll
+sudo /root/.dotnet/dotnet QuicSimpleTest/artifacts/$4/QuicHello.dll
