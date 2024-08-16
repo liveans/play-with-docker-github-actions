@@ -63,4 +63,4 @@ sudo ./dotnet-install.sh --channel $4
 export DOTNET_ROOT=/root/.dotnet
 export PATH=$PATH:/root/.dotnet
 
-sudo /root/.dotnet/dotnet QuicSimpleTest/artifacts/$4/QuicHello.dll
+sudo /root/.dotnet/dotnet QuicSimpleTest/artifacts/net$4/QuicHello.dll
