@@ -1,4 +1,5 @@
 #! /bin/bash
+set -e
 cd /main
 OS=$(echo $(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release) | xargs)
 VERSION=$(echo $(awk -F= '$1=="VERSION_ID" { print $2 ;}' /etc/os-release) | xargs)

@@ -97,7 +97,4 @@ jobs:
         pushd QuicSimpleTest && dotnet build -a ${{ matrix.vec.arch }} -c ${{ matrix.vec.config }} -o artifacts && popd
     - name: Docker Run
       run: |
-        docker run -v $(pwd):/main --name DockerRun ${{ matrix.vec.image }} /main/docker-script.sh ${{ matrix.vec.arch }} ${{ matrix.vec.config }} ${{ matrix.vec.tls }}
-        EXIT_CODE=$(docker wait DockerRun)
-        docker rm DockerRun
-        exit $EXIT_CODE
+        docker run -v $(pwd):/main ${{ matrix.vec.image }} /main/docker-script.sh ${{ matrix.vec.arch }} ${{ matrix.vec.config }} ${{ matrix.vec.tls }}
