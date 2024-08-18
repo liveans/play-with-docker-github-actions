@@ -80,4 +80,4 @@ if [[ $DOTNET_EXIT_CODE -ne 0 ]]; then
     export DOTNET_ROOT=$HOME/.dotnet
 fi
 
-dotnet /main/src/cs/QuicSimpleTest/artifacts/net$4/QuicHello.dll
+dotnet /main/src/cs/QuicSimpleTest/artifacts/net$4/QuicHello.net$4.dll
