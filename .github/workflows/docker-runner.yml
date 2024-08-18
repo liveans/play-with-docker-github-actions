@@ -58,7 +58,7 @@ jobs:
           { friendlyName: "Debian 12 ARM64", config: "Release", os: "ubuntu-22.04", arch: "arm64", tls: "openssl3", image: "mcr.microsoft.com/dotnet/sdk:9.0-preview-bookworm-slim-arm64v8", dotnetVersion: "9.0" },
           # CBL-Mariner 2.0
           { friendlyName: "CBL-Mariner 2.0 x64", config: "Release", os: "ubuntu-20.04", arch: "x64",   tls: "openssl", image: "mcr.microsoft.com/dotnet/runtime:8.0-cbl-mariner2.0-amd64", dotnetVersion: "8.0" },
-          { friendlyName: "CBL-Mariner 2.0 ARM64", config: "Release", os: "ubuntu-20.04", arch: "arm64",   tls: "openssl", image: "mcr.microsoft.com/dotnet/runtime:8.0-cbl-mariner2.0-amd64", dotnetVersion: "8.0" },
+          { friendlyName: "CBL-Mariner 2.0 ARM64", config: "Release", os: "ubuntu-20.04", arch: "arm64",   tls: "openssl", image: "mcr.microsoft.com/dotnet/runtime:8.0-cbl-mariner2.0-arm64", dotnetVersion: "8.0" },
           # Azure Linux 3.0
           { friendlyName: "AzureLinux 3.0 x64", config: "Release", os: "ubuntu-24.04", arch: "x64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet/sdk:9.0-preview-azurelinux3.0-amd64", dotnetVersion: "9.0", xdp: "-UseXdp" },
           { friendlyName: "AzureLinux 3.0 ARM64", config: "Release", os: "ubuntu-24.04", arch: "arm64",   tls: "openssl3", image: "mcr.microsoft.com/dotnet/sdk:9.0-preview-azurelinux3.0-arm64v8", dotnetVersion: "9.0" },
