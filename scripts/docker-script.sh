@@ -13,15 +13,13 @@ cd /main
 . /etc/os-release
 OS=$(echo $ID | xargs)
 VERSION=$(echo $VERSION_ID | xargs)
-dotnet --version
-DOTNET_EXIT_CODE=$?
 
 echo "${OS} ${VERSION} is detected."
 
 install_dependencies_apt()
 {
     apt-get update
-    if [[ $DOTNET_EXIT_CODE -ne 0 ]]; then
+    if ! [ -f /usr/bin/dotnet ]; then
         apt-get install -y wget gzip tar
     fi
     apt-get install -y ./artifacts/libmsquic_*.deb
@@ -30,7 +28,7 @@ install_dependencies_apt()
 install_dependencies_rpm()
 {
     yum update -y
-    if [[ $DOTNET_EXIT_CODE -ne 0 ]]; then
+    if ! [ -f /usr/bin/dotnet ]; then
         yum install -y wget gzip tar # .NET installing requirements
         yum install -y libicu # .NET dependencies
     fi
@@ -40,7 +38,7 @@ install_dependencies_rpm()
 install_dependencies_opensuse()
 {
     zypper ref
-    if [[ $DOTNET_EXIT_CODE -ne 0 ]]; then
+    if ! [ -f /usr/bin/dotnet ]; then
         zypper install -y wget gzip
     fi
     find -name "libmsquic*.rpm" -exec zypper install --allow-unsigned-rpm -y {} \;
@@ -49,6 +47,9 @@ install_dependencies_opensuse()
 # .NET is installed already on Azure Linux and Mariner images
 install_libmsquic_azure_linux()
 {
+    if ! [ -f /usr/bin/dotnet ]; then
+        tdnf install -y wget gzip tar
+    fi
     tdnf update
     find -name "libmsquic*.rpm" -exec tdnf install -y {} \;
 }
@@ -71,7 +72,7 @@ chmod +x artifacts/bin/linux/${1}_${2}_${3}/msquictest
 artifacts/bin/linux/${1}_${2}_${3}/msquictest --gtest_filter=ParameterValidation.ValidateApi
 
 # Install .NET if it is not installed
-if [[ $DOTNET_EXIT_CODE -ne 0 ]]; then
+if ! [ -f /usr/bin/dotnet ]; then
     wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
     chmod +x dotnet-install.sh
     ./dotnet-install.sh --channel $4 --shared-runtime
